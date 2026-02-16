@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Salomé | Digital Tools & Growth</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo" onclick="scrollToTop()">Salomé</div>
+
+    <nav id="nav-menu">
+        <a href="#home">Home</a>
+        <a href="#story">La mia storia</a>
+        <a href="#products">Prodotti</a>
+        <a href="#mission">Missione</a>
+        <a href="#letter">Scrivimi</a>
+    </nav>
+
+    <div class="burger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+</header>
+
+<!-- HERO -->
+<section class="hero fade-in" id="home">
+    <div class="hero-text">
+        <h1>Ciao, sono Salomé</h1>
+        <p>
+            Trasformo esperienze di vita, viaggi e crescita personale
+            in strumenti digitali per aiutarti a costruire la tua strada.
+        </p>
+        <a href="#products" class="btn">Scopri i miei prodotti</a>
+    </div>
+
+    <div class="hero-image">
+        <img src="images/saly.png" alt="Salomé">
+    </div>
+</section>
+
+<!-- STORY -->
+<section class="story fade-in" id="story">
+    <h2>La mia storia</h2>
+
+    <p>Sono nata in Georgia. A 12 anni mi sono trasferita in Italia, senza conoscere la lingua.</p>
+    <p>Nuova lingua. Nuova vita. Nuova identità. E ce l’ho fatta.</p>
+    <p>A 26 anni sono partita da sola per l’Australia. Ancora una volta: da zero.</p>
+</section>
+
+<!-- PRODUCTS -->
+<section class="shop fade-in" id="products">
+
+    <h2>I miei prodotti digitali</h2>
+    <p class="shop-subtitle">Strumenti reali, esperienze vere, risultati concreti.</p>
+
+    <div class="shop-grid">
+
+        <!-- PRODUCT 1 -->
+        <div class="product-card" id="product1">
+            <div class="product-image">
+                <img src="images/image1.jpg" alt="Australia Guide">
+            </div>
+            <div class="product-content">
+                <h3>I primi passi in Australia</h3>
+                <p>Guida reale per chi pensa di partire e cambiare vita con consapevolezza.</p>
+                <div class="price">€0 — Limited offer</div>
+                <button onclick="scrollAndGo('product1','https://studiosalome.gumroad.com/l/dbgbjy')">
+                    Ottieni ora
+                </button>
+            </div>
+        </div>
+
+        <!-- PRODUCT 2 -->
+        <div class="product-card" id="product2">
+            <div class="product-image">
+                <img src="images/image2.jpg" alt="Mindset Guide">
+            </div>
+            <div class="product-content">
+                <h3>Dal pensiero all'azione</h3>
+                <p>Trasforma le idee in azioni concrete e smetti di rimandare.</p>
+                <div class="price">€5 — invece di €10</div>
+                <button onclick="scrollAndGo('product2','https://studiosalome.gumroad.com/l/qcwdcq')">
+                    Acquista ora
+                </button>
+            </div>
+        </div>
+
+        <!-- PRODUCT 3 -->
+        <div class="product-card" id="product3">
+            <div class="product-image">
+                <img src="images/image3.jpg" alt="Life Change">
+            </div>
+            <div class="product-content">
+                <h3>Da dove partire per cambiare vita</h3>
+                <p>Spazio di chiarezza per chi cerca una nuova direzione.</p>
+                <div class="price">€2 — invece di €8</div>
+                <button onclick="scrollAndGo('product3','https://studiosalome.gumroad.com/l/tsrjwb')">
+                    Acquista ora
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MISSION -->
+<section class="mission fade-in" id="mission">
+    <h2>La mia missione</h2>
+    <p>Aiutarti a credere in te quando parti da zero.</p>
+    <p class="highlight">Se io ce l’ho fatta, puoi farcela anche tu.</p>
+    <a href="#letter" class="btn">Inizia il tuo percorso</a>
+</section>
+
+<!-- LETTER -->
+<section id="letter" class="letter-section fade-in">
+    <h2>Scrivimi una lettera</h2>
+    <p>Raccontami dove sei ora e dove vuoi arrivare.</p>
+
+    <form id="letter-form">
+        <input type="text" name="name" placeholder="Il tuo nome" required>
+        <input type="email" name="email" placeholder="La tua email" required>
+        <textarea name="message" rows="6" placeholder="La tua lettera..." required></textarea>
+        <button type="submit">Invia</button>
+    </form>
+
+    <p id="form-status"></p>
+</section>
+
+<footer>
+    <p>© 2026 Salomé — Digital Growth & Freedom</p>
+</footer>
+
+<script>
+    emailjs.init("5wIZFhRMKgtPzA9Lg");
+
+    /* FORM */
+    document.getElementById("letter-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        emailjs.sendForm("service_h54fnfp", "template_qfe8mzf", this)
+        .then(() => {
+            document.getElementById("form-status").innerText = "Messaggio inviato! 📩";
+            this.reset();
+        });
+    });
+
+    /* BURGER */
+    const navMenu = document.getElementById("nav-menu");
+    function toggleMenu() {
+        navMenu.classList.toggle("show");
+    }
+    document.querySelectorAll("#nav-menu a").forEach(link =>
+        link.addEventListener("click", () => navMenu.classList.remove("show"))
+    );
+
+    /* SCROLL TOP */
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    /* SCROLL + REDIRECT */
+    function scrollAndGo(id, url) {
+        document.getElementById(id).scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+        setTimeout(() => {
+            window.open(url, "_blank");
+        }, 800);
+    }
+
+    /* FADE IN */
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => e.isIntersecting && e.target.classList.add("show"));
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
